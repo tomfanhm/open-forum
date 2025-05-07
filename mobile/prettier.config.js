@@ -1,0 +1,28 @@
+/** @type {import('prettier').Config} */
+module.exports = {
+  endOfLine: "auto",
+  semi: true,
+  singleQuote: false,
+  tabWidth: 2,
+  trailingComma: "es5",
+  importOrder: [
+    "^(react-native$)",
+    "^(react/(.*)$)|^(react$)",
+    "<THIRD_PARTY_MODULES>",
+    "",
+    "^app/(.*)$",
+    "^components/(.*)$",
+    "^config/(.*)$",
+    "^constants/(.*)$",
+    "^hooks/(.*)$",
+    "^lib/(.*)$",
+    "^screens/(.*)$",
+    "^services/(.*)$",
+    "^styles/(.*)$",
+    "^utils/(.*)$",
+    "",
+    "^[./]",
+  ],
+  importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
+  plugins: ["@ianvs/prettier-plugin-sort-imports"],
+};

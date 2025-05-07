@@ -1,17 +1,17 @@
 import "~/global.css";
 
+import { Platform } from "react-native";
+import * as React from "react";
 import {
+  DarkTheme,
+  DefaultTheme,
   Theme,
   ThemeProvider,
-  DefaultTheme,
-  DarkTheme,
 } from "@react-navigation/native";
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import * as React from "react";
-import { Platform } from "react-native";
 import { NAV_THEME } from "~/lib/constants";
 import { useColorScheme } from "~/lib/useColorScheme";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
