@@ -5,8 +5,6 @@
 - [ ] Implement `POST /auth/register`
 - [ ] Implement `POST /auth/login`
 - [ ] Implement `POST /auth/logout`
-- [ ] Implement `GET /auth/me`
-- [ ] Implement `PUT /auth/me`
 
 ## Users
 

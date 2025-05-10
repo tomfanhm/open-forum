@@ -3,7 +3,6 @@ CREATE TABLE users(
     firebase_uid text UNIQUE NOT NULL,
     display_name text,
     avatar_url text,
-    role TEXT NOT NULL DEFAULT 'USER',
     bio text,
     location text,
     website text,

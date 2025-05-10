@@ -2,6 +2,7 @@ CREATE TABLE thread_tags(
     thread_id uuid NOT NULL REFERENCES threads(id) ON DELETE CASCADE,
     tag_id integer NOT NULL REFERENCES tags(id) ON DELETE CASCADE,
     created_at timestamptz NOT NULL DEFAULT NOW(),
+    updated_at timestamptz NOT NULL DEFAULT NOW(),
     PRIMARY KEY (thread_id, tag_id)
 );
 
