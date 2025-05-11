@@ -19,11 +19,11 @@ import java.util.Collections;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    private UserRoleRepository userRoleRepository;
+    private final UserRoleRepository userRoleRepository;
 
-    private FirebaseAuth firebaseAuth;
+    private final FirebaseAuth firebaseAuth;
 
     public void register(RegisterRequest request) throws FirebaseAuthException {
         // Verify the ID token and decode it

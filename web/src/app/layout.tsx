@@ -1,3 +1,8 @@
+"use client"
+
+import "@/styles/globals.css"
+
+import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export default function RootLayout({
@@ -16,7 +21,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <main className="bg-background text-foreground min-h-screen font-sans antialiased">
+              {children}
+              <Toaster />
+            </main>
           </ThemeProvider>
         </body>
       </html>
