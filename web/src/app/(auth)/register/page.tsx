@@ -2,6 +2,7 @@ import React from "react"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
+import RegisterForm from "@/components/register-form"
 
 const Page: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const Page: React.FC = () => {
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-        {/* <RegisterForm /> */}
+        <RegisterForm />
       </div>
       <p className="text-muted-foreground mt-10 text-center text-sm">
         Already a member?

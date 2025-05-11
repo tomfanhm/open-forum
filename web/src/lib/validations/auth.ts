@@ -26,9 +26,9 @@ export const registerSchema = z
   .object({
     email,
     password,
-    confirmPassword: password,
+    confirm_password: password,
   })
-  .refine((data) => data.password === data.confirmPassword, {
+  .refine((data) => data.password === data.confirm_password, {
     message: "Passwords don't match",
   })
 
