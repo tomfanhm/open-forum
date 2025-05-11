@@ -1,9 +1,9 @@
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/theme-provider"
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <>
@@ -21,5 +21,5 @@ export default function RootLayout({
         </body>
       </html>
     </>
-  );
+  )
 }
