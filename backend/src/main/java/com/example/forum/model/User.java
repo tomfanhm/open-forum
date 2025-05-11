@@ -61,10 +61,6 @@ public class User {
     @Column(name = "reputation_points", nullable = false)
     private Integer reputationPoints = 0;
 
-    @Builder.Default
-    @Column(name = "role", nullable = false)
-    private String role = "USER";
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", nullable = true)
     private UserRole userRole;

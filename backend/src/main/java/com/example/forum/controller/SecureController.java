@@ -1,5 +1,6 @@
 package com.example.forum.controller;
 
+import com.example.forum.dto.response.MessageResponse;
 import com.example.forum.security.FirebaseUserDetails;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,6 +14,14 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 public class SecureController {
+
+    @GetMapping("/public")
+    public ResponseEntity<MessageResponse> getPublic() {
+        MessageResponse response = new MessageResponse();
+        response.setMessage("Hello World!");
+
+        return ResponseEntity.ok(response);
+    }
 
     @GetMapping("/protected")
     public ResponseEntity<Map<String, Object>> getProtected(@AuthenticationPrincipal FirebaseUserDetails userDetails) {
