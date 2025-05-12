@@ -11,13 +11,7 @@ import useAuthStore from "@/hooks/use-auth-store"
 
 import GoogleLogin from "./google-login"
 import { Button } from "./ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-} from "./ui/card"
+import { Card, CardContent, CardFooter } from "./ui/card"
 import {
   Form,
   FormControl,
@@ -54,9 +48,6 @@ const LoginForm: React.FC = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <Card className="border-none shadow-none sm:border sm:shadow">
-          <CardHeader>
-            <CardDescription></CardDescription>
-          </CardHeader>
           <CardContent>
             <div className="space-y-6">
               <FormField
@@ -93,6 +84,17 @@ const LoginForm: React.FC = () => {
                   </FormItem>
                 )}
               />
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={form.formState.isSubmitting}
+              >
+                {form.formState.isSubmitting ? <LoadingSpinner /> : "Login"}
+              </Button>
+            </div>
+          </CardContent>
+          <CardFooter>
+            <div className="w-full space-y-6">
               <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                 <span className="bg-card text-muted-foreground relative z-10 px-2">
                   Or continue with
@@ -100,15 +102,6 @@ const LoginForm: React.FC = () => {
               </div>
               <GoogleLogin />
             </div>
-          </CardContent>
-          <CardFooter>
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={form.formState.isSubmitting}
-            >
-              {form.formState.isSubmitting ? <LoadingSpinner /> : "Login"}
-            </Button>
           </CardFooter>
         </Card>
       </form>
