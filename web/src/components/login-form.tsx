@@ -40,7 +40,7 @@ const LoginForm: React.FC = () => {
     const authResponse = await login(values)
     if (authResponse) {
       setAuth(authResponse)
-      router.push("/")
+      router.push("/dashboard")
     }
   }
 

@@ -86,7 +86,6 @@ export const loginWithGoogle = async (): Promise<AuthResponse | null> => {
       return authResponseSchema.parse(data)
     }
   } catch (error: unknown) {
-    console.log(error)
     toast.error(
       error instanceof Error
         ? error.message

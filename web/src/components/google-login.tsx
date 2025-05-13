@@ -17,7 +17,7 @@ const GoogleLogin: React.FC = () => {
     const authResponse = await loginWithGoogle()
     if (authResponse) {
       setAuth(authResponse)
-      router.push("/")
+      router.push("/dashboard")
     }
   }
   return (

@@ -2,6 +2,7 @@ import "@/styles/globals.css"
 
 import { site } from "@/config/site"
 import { Toaster } from "@/components/ui/sonner"
+import FirebaseHandler from "@/components/firebase-handler"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata = {
@@ -38,6 +39,7 @@ export default function RootLayout({
               <Toaster />
             </main>
           </ThemeProvider>
+          <FirebaseHandler />
         </body>
       </html>
     </>
