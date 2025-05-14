@@ -19,7 +19,6 @@ public class SecureController {
     public ResponseEntity<MessageResponse> getPublic() {
         MessageResponse response = new MessageResponse();
         response.setMessage("Hello World!");
-
         return ResponseEntity.ok(response);
     }
 

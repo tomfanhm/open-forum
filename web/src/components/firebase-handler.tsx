@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect } from "react"
-import { User } from "firebase/auth"
+import { onAuthStateChanged, User } from "firebase/auth"
 
 import client from "@/lib/client"
 import { auth } from "@/lib/firebase/auth"
@@ -9,14 +9,13 @@ import { authResponseSchema } from "@/lib/validations/auth"
 import useAuthStore from "@/hooks/use-auth-store"
 
 const FirebaseHandler: React.FC = () => {
-  const { setAuth } = useAuthStore()
+  const { setAuth, setLoading, destroy } = useAuthStore()
 
   useEffect(() => {
-    const user: User | null = auth.currentUser
-
-    const login = async () => {
-      if (user) {
-        try {
+    const unsubscribe = onAuthStateChanged(auth, async (user: User | null) => {
+      setLoading(true)
+      try {
+        if (user) {
           const idToken = await user.getIdToken()
 
           const response = await client.post("/auth/login", {
@@ -27,14 +26,18 @@ const FirebaseHandler: React.FC = () => {
             const authResponse = authResponseSchema.parse(response.data)
             setAuth(authResponse)
           }
-        } catch {
-          // Do nothing
+        } else {
+          destroy()
         }
+      } catch (error: unknown) {
+        console.error(error)
+      } finally {
+        setLoading(false)
       }
-    }
+    })
 
-    login()
-  }, [setAuth])
+    return () => unsubscribe()
+  }, [setAuth, setLoading, destroy])
 
   return null
 }

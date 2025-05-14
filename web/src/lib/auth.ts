@@ -97,10 +97,7 @@ export const loginWithGoogle = async (): Promise<AuthResponse | null> => {
 
 export const logout = async (): Promise<void> => {
   try {
-    // Sign out from Firebase
-    auth.signOut()
-    // Send logout request to backend
-    client.post("/auth/logout")
+    await auth.signOut()
   } catch (error: unknown) {
     toast.error(
       error instanceof Error

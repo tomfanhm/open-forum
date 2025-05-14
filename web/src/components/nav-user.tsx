@@ -1,3 +1,4 @@
+import { unauthorized } from "next/navigation"
 import {
   IconDotsVertical,
   IconLogout,
@@ -29,7 +30,8 @@ export function NavUser() {
 
   const { auth } = useAuthStore()
 
-  if (!auth) return null
+  // The auth object should not be null here
+  if (!auth) unauthorized()
 
   return (
     <SidebarMenu>

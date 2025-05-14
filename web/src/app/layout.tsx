@@ -3,6 +3,7 @@ import "@/styles/globals.css"
 import { site } from "@/config/site"
 import { Toaster } from "@/components/ui/sonner"
 import FirebaseHandler from "@/components/firebase-handler"
+import Providers from "@/components/providers"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata = {
@@ -35,7 +36,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <main className="bg-background text-foreground min-h-screen font-sans antialiased">
-              {children}
+              <Providers>{children}</Providers>
               <Toaster />
             </main>
           </ThemeProvider>

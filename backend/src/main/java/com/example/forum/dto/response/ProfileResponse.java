@@ -1,8 +1,7 @@
-package com.example.forum.dto.request;
+package com.example.forum.dto.response;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class LogoutRequest {
-    @NotBlank
-    private String idToken;
+public class ProfileResponse {
+    private String displayName;
+    private String avatarUrl;
+    private String bio;
+    private String location;
+    private String website;
 }

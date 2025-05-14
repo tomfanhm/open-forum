@@ -2,9 +2,9 @@
 
 ## Authentication
 
-- [ ] Implement `POST /auth/register`
-- [ ] Implement `POST /auth/login`
-- [ ] Implement `POST /auth/logout`
+- [x] Implement `POST /auth/register`
+- [x] Implement `POST /auth/login`
+- [x] Implement `POST /auth/logout`
 
 ## Users
 

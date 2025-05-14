@@ -65,11 +65,6 @@ public class AuthService {
         return authResponse;
     }
 
-    public void logout(String idToken) throws FirebaseAuthException {
-        FirebaseToken decoded = firebaseAuth.verifyIdToken(idToken);
-        firebaseAuth.revokeRefreshTokens(decoded.getUid());
-    }
-
     private void createUser(FirebaseToken decoded) {
         User user = new User();
         user.setFirebaseUid(decoded.getUid());

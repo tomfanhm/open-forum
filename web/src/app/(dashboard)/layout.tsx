@@ -1,7 +1,8 @@
 "use client"
 
 import React from "react"
-import { redirect } from "next/navigation"
+import { unauthorized } from "next/navigation"
+import { Loader2 } from "lucide-react"
 
 import useAuthStore from "@/hooks/use-auth-store"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
@@ -13,9 +14,17 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  const { auth } = useAuthStore()
+  const { auth, loading } = useAuthStore()
 
-  if (!auth) redirect("/login")
+  if (loading) {
+    return (
+      <div className="mx-auto flex min-h-screen items-center justify-center">
+        <Loader2 className="text-primary h-8 w-8 animate-spin" />
+      </div>
+    )
+  }
+
+  if (!auth) unauthorized()
 
   return (
     <SidebarProvider
