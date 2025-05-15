@@ -3,6 +3,8 @@ package com.example.forum.service;
 import com.example.forum.dto.request.LoginRequest;
 import com.example.forum.dto.request.RegisterRequest;
 import com.example.forum.dto.response.AuthResponse;
+import com.example.forum.exception.EmailNotVerifiedException;
+import com.example.forum.exception.UserAlreadyExistsException;
 import com.example.forum.model.User;
 import com.example.forum.model.UserRole;
 import com.example.forum.repository.UserRepository;
@@ -31,7 +33,7 @@ public class AuthService {
         String uid = decoded.getUid();
         // Check if the user already exists
         if (userRepository.existsByFirebaseUid(uid)) {
-            throw new RuntimeException("User already exists");
+            throw new UserAlreadyExistsException("User already exists");
         }
         // Create a new user
         createUser(decoded);
@@ -49,7 +51,7 @@ public class AuthService {
         }
         // Check if email is verified
         if (!decoded.isEmailVerified()) {
-            throw new RuntimeException("Email not verified");
+            throw new EmailNotVerifiedException("Email not verified");
         }
         // Update the last login time
         User user = userRepository.findByFirebaseUid(uid)

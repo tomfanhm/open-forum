@@ -1,5 +1,6 @@
 package com.example.forum.security;
 
+import com.example.forum.exception.EmailNotVerifiedException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
@@ -31,6 +32,11 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
 
         try {
             FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(token);
+
+            if (!decodedToken.isEmailVerified()) {
+                throw new EmailNotVerifiedException("Email not verified");
+            }
+
             String uid = decodedToken.getUid();
 
             UserDetails userDetails = new FirebaseUserDetails(uid, decodedToken);
