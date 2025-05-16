@@ -2,6 +2,7 @@ package com.example.forum.service;
 
 import com.example.forum.dto.request.UpdateProfileRequest;
 import com.example.forum.dto.response.ProfileResponse;
+import com.example.forum.mapper.UserMapper;
 import com.example.forum.model.User;
 import com.example.forum.repository.UserRepository;
 import com.example.forum.repository.UserRoleRepository;
@@ -13,13 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
     private final UserRoleRepository userRoleRepository;
+    private final UserMapper userMapper;
 
     public ProfileResponse getProfile(String uid) {
         User user = userRepository.findByFirebaseUid(uid)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        return mapToProfileResponse(user);
+        return userMapper.toProfileResponse(user);
     }
 
     @Transactional
@@ -32,16 +33,6 @@ public class UserService {
         user.setLocation(request.getLocation());
         user.setWebsite(request.getWebsite());
         userRepository.save(user);
-        return mapToProfileResponse(user);
-    }
-
-    private ProfileResponse mapToProfileResponse(User user) {
-        return ProfileResponse.builder()
-                .displayName(user.getDisplayName())
-                .avatarUrl(user.getAvatarUrl())
-                .bio(user.getBio())
-                .location(user.getLocation())
-                .website(user.getWebsite())
-                .build();
+        return userMapper.toProfileResponse(user);
     }
 }

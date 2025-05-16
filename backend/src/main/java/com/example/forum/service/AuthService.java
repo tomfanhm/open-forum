@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.Collections;
@@ -27,6 +28,7 @@ public class AuthService {
 
     private final FirebaseAuth firebaseAuth;
 
+    @Transactional
     public void register(RegisterRequest request) throws FirebaseAuthException {
         // Verify the ID token and decode it
         FirebaseToken decoded = firebaseAuth.verifyIdToken(request.getIdToken());
@@ -39,6 +41,7 @@ public class AuthService {
         createUser(decoded);
     }
 
+    @Transactional
     public AuthResponse login(LoginRequest request) throws FirebaseAuthException {
         // Verify the ID token and decode it
         FirebaseToken decoded = firebaseAuth.verifyIdToken(request.getIdToken());
