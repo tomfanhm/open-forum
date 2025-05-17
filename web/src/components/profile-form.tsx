@@ -78,7 +78,7 @@ const ProfileForm: React.FC = () => {
   )
 }
 
-interface ProfileFormViewProps {
+type ProfileFormViewProps = {
   defaultValues: UpdateProfileSchema
   onSubmit: (values: UpdateProfileSchema) => void
   isSubmitting: boolean

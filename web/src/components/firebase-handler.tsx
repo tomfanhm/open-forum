@@ -6,7 +6,7 @@ import { onAuthStateChanged, User } from "firebase/auth"
 import client from "@/lib/client"
 import { auth } from "@/lib/firebase/auth"
 import { authResponseSchema } from "@/lib/validations/auth"
-import useAuthStore from "@/hooks/use-auth-store"
+import { useAuthStore } from "@/hooks/use-auth-store"
 
 const FirebaseHandler: React.FC = () => {
   const { setAuth, setLoading, destroy } = useAuthStore()
@@ -29,8 +29,8 @@ const FirebaseHandler: React.FC = () => {
         } else {
           destroy()
         }
-      } catch (error: unknown) {
-        console.error(error)
+      } catch {
+        // Do nothing
       } finally {
         setLoading(false)
       }

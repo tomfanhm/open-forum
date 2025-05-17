@@ -6,14 +6,15 @@ import {
 } from "firebase/auth"
 import { toast } from "sonner"
 
-import client from "./client"
-import { auth } from "./firebase/auth"
+import client from "@/lib/client"
+import { auth } from "@/lib/firebase/auth"
+import { errorToast } from "@/lib/utils"
 import {
   AuthResponse,
   authResponseSchema,
   LoginSchema,
   RegisterSchema,
-} from "./validations/auth"
+} from "@/lib/validations/auth"
 
 export const register = async (request: RegisterSchema): Promise<boolean> => {
   try {
@@ -34,7 +35,7 @@ export const register = async (request: RegisterSchema): Promise<boolean> => {
       return true
     }
   } catch (error: unknown) {
-    toast.error(error instanceof Error ? error.message : "Failed to register.")
+    errorToast(error, "Failed to register.")
   }
   return false
 }

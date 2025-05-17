@@ -2,7 +2,7 @@ import { create } from "zustand"
 
 import { AuthResponse } from "@/lib/validations/auth"
 
-type Auth = AuthResponse
+export type Auth = AuthResponse
 
 type AuthStore = {
   auth: Auth | null
@@ -12,12 +12,10 @@ type AuthStore = {
   destroy: () => void
 }
 
-const useAuthStore = create<AuthStore>((set) => ({
+export const useAuthStore = create<AuthStore>((set) => ({
   auth: null,
   loading: true, // Set loading to true by default, set it to false when the auth state is determined
   setAuth: (auth: Auth) => set({ auth }),
   setLoading: (loading: boolean) => set({ loading }),
   destroy: () => set({ auth: null }),
 }))
-
-export default useAuthStore

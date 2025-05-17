@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form"
 
 import { login } from "@/lib/auth"
 import { loginSchema, LoginSchema } from "@/lib/validations/auth"
-import useAuthStore from "@/hooks/use-auth-store"
+import { useAuthStore } from "@/hooks/use-auth-store"
 
 import GoogleLogin from "./google-login"
 import { Button } from "./ui/button"

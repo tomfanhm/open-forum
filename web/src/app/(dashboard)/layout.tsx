@@ -4,10 +4,10 @@ import React from "react"
 import { unauthorized } from "next/navigation"
 import { Loader2 } from "lucide-react"
 
-import useAuthStore from "@/hooks/use-auth-store"
+import { useAuthStore } from "@/hooks/use-auth-store"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
+import { AppSidebar } from "@/components/dashboard/app-sidebar"
+import { SiteHeader } from "@/components/dashboard/site-header"
 
 export default function DashboardLayout({
   children,

@@ -1,6 +1,6 @@
 import axios from "axios"
 
-import { auth } from "./firebase/auth"
+import { auth } from "@/lib/firebase/auth"
 
 const client = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,

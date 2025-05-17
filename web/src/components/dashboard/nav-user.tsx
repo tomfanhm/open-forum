@@ -1,13 +1,15 @@
+import Link from "next/link"
 import { unauthorized } from "next/navigation"
 import {
   IconDotsVertical,
   IconLogout,
   IconNotification,
+  IconSettings,
 } from "@tabler/icons-react"
 
 import { logout } from "@/lib/auth"
 import { getAvatarFallback } from "@/lib/utils"
-import useAuthStore from "@/hooks/use-auth-store"
+import { useAuthStore } from "@/hooks/use-auth-store"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,
@@ -40,9 +42,9 @@ export function NavUser() {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground cursor-pointer"
             >
-              <Avatar className="h-8 w-8 rounded-lg grayscale">
+              <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage
                   src={auth.avatar_url || undefined}
                   alt={auth.display_name || undefined}
@@ -91,13 +93,23 @@ export function NavUser() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <IconNotification />
-                Notifications
-              </DropdownMenuItem>
+              {/* Notifications */}
+              <Link href="/dashboard/notifications">
+                <DropdownMenuItem className="cursor-pointer">
+                  <IconNotification />
+                  Notifications
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/dashboard/settings">
+                {/* Settings */}
+                <DropdownMenuItem className="cursor-pointer">
+                  <IconSettings />
+                  Settings
+                </DropdownMenuItem>
+              </Link>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={logout}>
+            <DropdownMenuItem className="cursor-pointer" onClick={logout}>
               <IconLogout />
               Log out
             </DropdownMenuItem>

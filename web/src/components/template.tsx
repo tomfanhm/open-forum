@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import { Button } from "./ui/button"
 
-interface TemplateProps {
+type TemplateProps = {
   status: number
   title: string
   description: string

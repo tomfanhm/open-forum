@@ -4,7 +4,7 @@ import React from "react"
 import { useRouter } from "next/navigation"
 
 import { loginWithGoogle } from "@/lib/auth"
-import useAuthStore from "@/hooks/use-auth-store"
+import { useAuthStore } from "@/hooks/use-auth-store"
 
 import { Button } from "./ui/button"
 

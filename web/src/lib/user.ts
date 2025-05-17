@@ -1,9 +1,9 @@
-import client from "./client"
+import client from "@/lib/client"
 import {
   ProfileResponseSchema,
   profileResponseSchema,
   UpdateProfileSchema,
-} from "./validations/user"
+} from "@/lib/validations/user"
 
 export const getProfile = async (): Promise<ProfileResponseSchema> => {
   const response = await client.get("/user/profile")
