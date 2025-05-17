@@ -35,10 +35,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <main className="bg-background text-foreground min-h-screen font-sans antialiased">
+            <div className="bg-background text-foreground min-h-screen font-sans antialiased">
               <Providers>{children}</Providers>
               <Toaster />
-            </main>
+            </div>
           </ThemeProvider>
           <FirebaseHandler />
         </body>
