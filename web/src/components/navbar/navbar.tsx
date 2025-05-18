@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
           <ModeToggle />
           {auth && (
             <Link href="/submit">
-              <Button variant="ghost" size="icon" className="cursor-pointer">
+              <Button variant="ghost" size="icon">
                 <span className="sr-only">Create a new post</span>
                 <IconPlus />
               </Button>
@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
           {auth && <UserMenu auth={auth} />}
           {!auth && (
             <Link href="/login">
-              <Button variant="ghost" className="cursor-pointer">
+              <Button variant="ghost">
                 Log in <span aria-hidden="true">&rarr;</span>
               </Button>
             </Link>

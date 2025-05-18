@@ -11,9 +11,8 @@ import {
   updateProfileSchema,
   UpdateProfileSchema,
 } from "@/lib/validations/user"
-
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert"
-import { Button } from "./ui/button"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -21,11 +20,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form"
-import { Input } from "./ui/input"
-import { LoadingSpinner } from "./ui/loading-spinner"
-import { Skeleton } from "./ui/skeleton"
-import { Textarea } from "./ui/textarea"
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { LoadingSpinner } from "@/components/ui/loading-spinner"
+import { Skeleton } from "@/components/ui/skeleton"
+import { Textarea } from "@/components/ui/textarea"
 
 const Loading = () => (
   <div className="space-y-2">
@@ -137,6 +136,7 @@ const ProfileFormView: React.FC<ProfileFormViewProps> = ({
                         type="text"
                         placeholder="https://example.com/avatar.png"
                         {...field}
+                        readOnly
                       />
                     </FormControl>
                     <FormMessage />

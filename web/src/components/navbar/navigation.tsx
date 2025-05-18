@@ -20,7 +20,7 @@ const Navigation: React.FC = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="cursor-pointer">
+        <Button variant="ghost" size="icon">
           <span className="sr-only">Open navigation</span>
           <Menu />
         </Button>

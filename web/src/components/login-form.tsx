@@ -8,10 +8,8 @@ import { useForm } from "react-hook-form"
 import { login } from "@/lib/auth"
 import { loginSchema, LoginSchema } from "@/lib/validations/auth"
 import { useAuthStore } from "@/hooks/use-auth-store"
-
-import GoogleLogin from "./google-login"
-import { Button } from "./ui/button"
-import { Card, CardContent, CardFooter } from "./ui/card"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import {
   Form,
   FormControl,
@@ -19,9 +17,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form"
-import { Input } from "./ui/input"
-import { LoadingSpinner } from "./ui/loading-spinner"
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { LoadingSpinner } from "@/components/ui/loading-spinner"
+import GoogleLogin from "@/components/google-login"
 
 const LoginForm: React.FC = () => {
   const router = useRouter()

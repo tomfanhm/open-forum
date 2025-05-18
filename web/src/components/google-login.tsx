@@ -5,8 +5,7 @@ import { useRouter } from "next/navigation"
 
 import { loginWithGoogle } from "@/lib/auth"
 import { useAuthStore } from "@/hooks/use-auth-store"
-
-import { Button } from "./ui/button"
+import { Button } from "@/components/ui/button"
 
 const GoogleLogin: React.FC = () => {
   const router = useRouter()
