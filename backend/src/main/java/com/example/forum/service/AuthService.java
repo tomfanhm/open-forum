@@ -5,6 +5,8 @@ import com.example.forum.dto.request.RegisterRequest;
 import com.example.forum.dto.response.AuthResponse;
 import com.example.forum.exception.EmailNotVerifiedException;
 import com.example.forum.exception.UserAlreadyExistsException;
+import com.example.forum.exception.UserNotFoundException;
+import com.example.forum.exception.UserRoleNotFoundException;
 import com.example.forum.model.User;
 import com.example.forum.model.UserRole;
 import com.example.forum.repository.UserRepository;
@@ -22,12 +24,12 @@ import java.util.Collections;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
+    // Repositories
     private final UserRepository userRepository;
-
     private final UserRoleRepository userRoleRepository;
-
     private final FirebaseAuth firebaseAuth;
 
+    // Auth operations
     @Transactional
     public void register(RegisterRequest request) throws FirebaseAuthException {
         // Verify the ID token and decode it
@@ -58,7 +60,7 @@ public class AuthService {
         }
         // Update the last login time
         User user = userRepository.findByFirebaseUid(uid)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
         user.setLastLoginAt(Instant.now());
         userRepository.save(user);
         // Create and return the AuthResponse
@@ -79,7 +81,7 @@ public class AuthService {
         user.setEmailVerified(decoded.isEmailVerified());
         // Set User roles, default to USER
         UserRole userRole = userRoleRepository.findByName("USER")
-                .orElseThrow(() -> new RuntimeException("User role not found"));
+                .orElseThrow(() -> new UserRoleNotFoundException("User role not found"));
         user.setUserRole(userRole);
         userRepository.save(user);
     }

@@ -4,13 +4,16 @@ import React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 
 import { getProfile, updateProfile } from "@/lib/user"
+import { errorToast } from "@/lib/utils"
 import {
   ProfileResponseSchema,
   updateProfileSchema,
   UpdateProfileSchema,
 } from "@/lib/validations/user"
+import { useAuthStore } from "@/hooks/use-auth-store"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import {
@@ -44,10 +47,11 @@ const ErrorAlert = () => (
 )
 
 const ProfileForm: React.FC = () => {
+  const { auth } = useAuthStore()
   const queryClient = useQueryClient()
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["profile"],
+    queryKey: ["profile", auth!.email], // The auth value is not null here
     queryFn: async (): Promise<ProfileResponseSchema> => {
       return await getProfile()
     },
@@ -59,8 +63,12 @@ const ProfileForm: React.FC = () => {
     mutationFn: async (values: UpdateProfileSchema) => {
       return await updateProfile(values)
     },
+    onError: (error) => {
+      errorToast(error)
+    },
     onSuccess: (data) => {
-      queryClient.setQueryData(["profile"], data)
+      toast.success("Profile updated.")
+      queryClient.setQueryData(["profile", auth!.email], data)
     },
   })
 

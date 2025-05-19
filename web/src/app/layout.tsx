@@ -38,8 +38,8 @@ export default function RootLayout({
               <Providers>{children}</Providers>
               <Toaster />
             </div>
+            <FirebaseHandler />
           </ThemeProvider>
-          <FirebaseHandler />
         </body>
       </html>
     </>

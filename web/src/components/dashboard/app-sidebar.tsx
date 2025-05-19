@@ -1,7 +1,11 @@
 import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { IconDashboard, IconSettings } from "@tabler/icons-react"
+import {
+  IconAdjustments,
+  IconDashboard,
+  IconUserCircle,
+} from "@tabler/icons-react"
 
 import { site } from "@/config/site"
 import {
@@ -27,9 +31,14 @@ const data = {
   ],
   navSecondary: [
     {
-      title: "Settings",
-      url: "/dashboard/settings",
-      icon: IconSettings,
+      title: "Profile",
+      url: "/dashboard/profile",
+      icon: IconUserCircle,
+    },
+    {
+      title: "Preferences",
+      url: "/dashboard/preferences",
+      icon: IconAdjustments,
     },
   ],
 }

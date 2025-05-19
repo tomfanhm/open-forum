@@ -36,3 +36,19 @@ export const updateProfileSchema = z.object({
 })
 
 export type UpdateProfileSchema = z.infer<typeof updateProfileSchema>
+
+export const preferences = z.object({
+  dark_mode: z.boolean(),
+  notification_emails: z.boolean(),
+  show_avatars: z.boolean(),
+})
+
+export const preferencesResponseSchema = preferences
+
+export type PreferencesResponseSchema = z.infer<
+  typeof preferencesResponseSchema
+>
+
+export const updatePreferencesSchema = preferences
+
+export type UpdatePreferencesSchema = z.infer<typeof updatePreferencesSchema>

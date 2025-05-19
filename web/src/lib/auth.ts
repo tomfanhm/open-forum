@@ -4,7 +4,6 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth"
-import { toast } from "sonner"
 
 import client from "@/lib/client"
 import { auth } from "@/lib/firebase/auth"
@@ -62,11 +61,7 @@ export const login = async (
       return authResponseSchema.parse(data)
     }
   } catch (error: unknown) {
-    toast.error(
-      error instanceof Error
-        ? error.message
-        : "Failed to login. Please check your credentials."
-    )
+    errorToast(error, "Failed to login. Please check your credentials.")
   }
   return null
 }
@@ -87,11 +82,7 @@ export const loginWithGoogle = async (): Promise<AuthResponse | null> => {
       return authResponseSchema.parse(data)
     }
   } catch (error: unknown) {
-    toast.error(
-      error instanceof Error
-        ? error.message
-        : "Failed to login with Google. Please try again."
-    )
+    errorToast(error, "Failed to login with Google. Please try again.")
   }
   return null
 }
@@ -100,10 +91,6 @@ export const logout = async (): Promise<void> => {
   try {
     await auth.signOut()
   } catch (error: unknown) {
-    toast.error(
-      error instanceof Error
-        ? error.message
-        : "Failed to logout. Please try again."
-    )
+    errorToast(error, "Failed to logout. Please try again.")
   }
 }

@@ -14,3 +14,20 @@ CREATE TRIGGER update_user_preferences_timestamp
     FOR EACH ROW
     EXECUTE FUNCTION update_timestamp();
 
+CREATE
+OR REPLACE FUNCTION create_default_user_preferences()
+RETURNS TRIGGER AS $$
+BEGIN
+INSERT INTO user_preferences (user_id)
+VALUES (NEW.id) ON CONFLICT (user_id) DO NOTHING;
+
+RETURN NEW;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_create_user_preferences
+    AFTER INSERT
+    ON users
+    FOR EACH ROW
+    EXECUTE FUNCTION create_default_user_preferences();

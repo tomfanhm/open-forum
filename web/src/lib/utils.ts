@@ -4,10 +4,16 @@ import { toast } from "sonner"
 import { twMerge } from "tailwind-merge"
 import { ZodError } from "zod"
 
+/**
+ * Merges multiple class value inputs into a single, deduplicated class name string.
+ */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+/**
+ * Generates a fallback avatar string from a given name.
+ */
 export function getAvatarFallback(name: string): string {
   if (!name) return ""
 
@@ -21,6 +27,9 @@ export function getAvatarFallback(name: string): string {
   return initials
 }
 
+/**
+ * Formats a Date object into a string in the format "YYYY-MM-DD".
+ */
 export function formatLocalDate(date: Date): string {
   const year = date.getFullYear()
   const month = (date.getMonth() + 1).toString().padStart(2, "0")
@@ -28,6 +37,9 @@ export function formatLocalDate(date: Date): string {
   return `${year}-${month}-${day}`
 }
 
+/**
+ * Displays an error as a toast notification.
+ */
 export function errorToast(
   error: unknown,
   message: string = "An unknown error occurred."
